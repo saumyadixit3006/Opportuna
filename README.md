@@ -1,197 +1,301 @@
-# OPPORTUNA
+# OPPORTUNA 🚀
+
 ### Student Opportunity & Application Tracker
 
-OPPORTUNA is a Java-based terminal application designed to help students keep track of internships, hackathons, scholarships and other opportunities in one place.
+OPPORTUNA is a Java-based command-line project that I built to make it easier for students to keep track of internships, hackathons, scholarships, competitions, and other opportunities.
 
-The main idea behind the project is not just to store opportunity details. It also helps a student decide which opportunities are more relevant to their current skills and deadlines.
+As students, we usually find opportunities in different places — college groups, WhatsApp/Telegram groups, emails, websites, LinkedIn, etc. Because of this, it is quite easy to forget an opportunity, miss a deadline, or lose track of an application.
 
-For example, if an internship requires Java, SQL and Git, and the student already knows Java and SQL, OPPORTUNA shows the skill match and also points out Git as a missing skill.
-
----
-
-## Why I Made This Project
-
-Students usually find opportunities through different sources such as college groups, emails, social media and websites. Because of this, it is easy to lose track of deadlines or forget which opportunities have already been applied for.
-
-I wanted to build something that could handle this problem using the Java concepts covered in the course.
-
-The project therefore combines:
-
-- Opportunity management
-- Student skill management
-- Skill matching
-- Priority calculation
-- Application tracking
-- Deadline reminders
-- File handling
-- Database connectivity
-- Object-oriented programming
+So, I wanted to make a simple system where all of this could be managed from one place.
 
 ---
 
-## Main Features
+## 💡 What does OPPORTUNA do?
 
-### 1. Student Profile
+The basic idea is:
 
-The user can enter:
+**Enter your skills → Check opportunities → See your skill match → Track applications → Don't miss deadlines**
 
-- Name
-- Course
-- Skills
+For example, if I have:
 
-The skills are stored and used later while checking opportunities.
+```text
+Java
+Python
+SQL
+Git
+```
 
-### 2. Opportunity Management
+and an internship requires:
 
-The application can store opportunities such as:
+```text
+Java
+SQL
+Git
+React
+```
 
-- Internships
-- Hackathons
-- Scholarships
-- Competitions
+OPPORTUNA can tell me that I match **3 out of 4 skills** and that **React is a missing skill**.
 
-Each opportunity contains information such as its title, organization, required skills, deadline and stipend.
+It also considers the deadline and stipend while calculating the priority of an opportunity.
 
-### 3. Skill Matching
+---
 
-OPPORTUNA compares the student's skills with the skills required by an opportunity.
+## ✨ Main Features
+
+### 👤 Student Profile
+
+The application starts by taking some basic information about the student:
+
+* Name
+* Course
+* Skills
+
+These skills are later used by the matching system.
+
+---
+
+### 📋 Manage Opportunities
+
+I can add and manage different types of opportunities, for example:
+
+* Internships
+* Hackathons
+* Scholarships
+* Competitions
+
+Each opportunity can contain:
+
+* Opportunity title
+* Organization
+* Required skills
+* Deadline
+* Stipend
+
+---
+
+### 🎯 Skill Matching
+
+One of the main parts of the project is the skill matching system.
+
+It compares the skills entered by the student with the skills required by an opportunity.
 
 The basic calculation is:
 
-    Match Percentage =
-    (Matched Skills / Required Skills) × 100
+```text
+Match Percentage =
+(Matched Skills / Required Skills) × 100
+```
 
-Skill names are normalized before comparison, so `Java`, `JAVA` and `java` are treated as the same skill.
+It also shows which skills are missing.
 
-The application also shows which skills are missing.
+For example:
 
-### 4. Opportunity Priority
+```text
+Your Skills:
+Java, Python, SQL, Git
 
-The project does not simply display opportunities in the order in which they were added.
+Required:
+Java, SQL, Git, React
 
-A priority score is calculated using multiple factors:
+Match: 75%
 
-- Skill match
-- Deadline urgency
-- Stipend
+Missing Skill:
+React
+```
 
-The score is limited to 100.
-
-This gives the student another way to decide which opportunities need attention first.
-
-### 5. Application Tracking
-
-A student can apply to an opportunity and track the application status.
-
-Example statuses include:
-
-- APPLIED
-- SHORTLISTED
-- INTERVIEW
-- SELECTED
-- REJECTED
-
-The project also keeps a small history of status changes.
-
-### 6. Duplicate Application Protection
-
-Before adding a new application, the program checks whether an active application for the same opportunity already exists.
-
-This prevents the same opportunity from being accidentally added multiple times.
-
-### 7. Deadline Reminder
-
-A separate worker checks opportunities that are approaching their deadlines.
-
-This part uses Java multithreading so that the reminder task is handled separately from the main application logic.
-
-### 8. Local Data Storage
-
-The basic version stores information locally, which means the main application can be demonstrated without setting up a database.
-
-Runtime files are created inside:
-
-    data/
-
-The files include:
-
-    opportunities.dat
-    applications.dat
-    activity.log
-
-### 9. JDBC and MySQL
-
-The project also contains a JDBC implementation for storing opportunity and application data in MySQL.
-
-This demonstrates:
-
-- JDBC connection
-- PreparedStatement
-- INSERT
-- SELECT
-- UPDATE
-- DELETE
-
-### 10. JPA
-
-A separate JPA/Hibernate implementation is included to demonstrate object-relational mapping using `EntityManager`.
+I also normalize the skill names so that `Java`, `JAVA`, and `java` are treated as the same skill.
 
 ---
 
-# Technologies Used
+### ⭐ Opportunity Priority
 
-- Java 17+
-- Maven
-- MySQL
-- JDBC
-- JPA / Hibernate
-- Java Collections
-- Java File I/O
-- Multithreading
+Instead of simply showing opportunities in the order they were added, OPPORTUNA calculates a priority score.
 
----
+The score considers:
 
-# Java Concepts Used
+* How well my skills match
+* How close the deadline is
+* The stipend offered
 
-The project was designed around the Java topics covered in the course.
-
-| Concept | Implementation |
-|---|---|
-| Classes & Objects | Models and service classes |
-| Encapsulation | Private fields with getters/setters |
-| Inheritance / OOP structure | Service and repository architecture |
-| Interfaces | Repository interfaces |
-| Packages | Separate packages for different responsibilities |
-| Exception Handling | Validation and database operations |
-| Custom Exceptions | `InvalidInputException`, `DatabaseOperationException` |
-| ArrayList | Storing opportunities and applications |
-| Vector | Skill processing |
-| Stack | Application status history |
-| HashMap | Match-score storage |
-| TreeSet | Normalized skill sets |
-| PriorityQueue | Opportunity prioritization |
-| File I/O | Local data storage and activity log |
-| Multithreading | Deadline reminder worker |
-| Synchronization | Safe repository operations |
-| Annotations | Custom `@Feature` annotation |
-| Reflection | Finding annotated features at runtime |
-| JDBC | MySQL database operations |
-| JPA | ORM-based persistence |
+This gives a more useful idea of which opportunities I should look at first.
 
 ---
 
-# Project Structure
+### 📝 Application Tracking
+
+After finding an opportunity, I can save an application and update its status.
+
+The available statuses are:
+
+```text
+SAVED
+APPLIED
+SHORTLISTED
+INTERVIEW
+SELECTED
+REJECTED
+```
+
+The project also keeps a history of status changes.
+
+So, instead of only knowing the current status, the application can keep track of how it reached that status.
+
+---
+
+### 🚫 Duplicate Application Check
+
+The system checks whether an application already exists for an opportunity.
+
+This prevents the same opportunity from accidentally being added multiple times.
+
+---
+
+### ⏰ Deadline Reminders
+
+There is a separate reminder feature that checks upcoming deadlines.
+
+I used Java multithreading for this part so that the reminder task can run separately from the main application flow.
+
+---
+
+### 💾 File Storage
+
+The project can store data locally using Java File I/O.
+
+This means the basic application does not require a database just to demonstrate the main functionality.
+
+Runtime data is stored inside the:
+
+```text
+data/
+```
+
+folder.
+
+---
+
+### 🗄️ JDBC + MySQL
+
+I also included a JDBC implementation to demonstrate database connectivity.
+
+It covers basic database operations such as:
+
+* Insert
+* Read
+* Update
+* Delete
+
+The SQL structure is provided in:
+
+```text
+schema.sql
+```
+
+---
+
+### 🔗 JPA / Hibernate
+
+The project also contains a separate JPA/Hibernate implementation.
+
+This was included to demonstrate how Java objects can be mapped to database tables using ORM.
+
+---
+
+# 🧠 Java Concepts Used
+
+I tried to use the Java concepts from the syllabus in an actual project instead of creating separate small programs for every topic.
+
+| Concept            | How it is used                                        |
+| ------------------ | ----------------------------------------------------- |
+| Classes & Objects  | Used throughout the project                           |
+| Encapsulation      | Private fields with getters/setters                   |
+| Interfaces         | Repository interfaces                                 |
+| Abstraction        | Repository/service architecture                       |
+| Polymorphism       | Different repository implementations                  |
+| Packages           | Code is divided into logical packages                 |
+| Exception Handling | Handling invalid input and failures                   |
+| Custom Exceptions  | `InvalidInputException`, `DatabaseOperationException` |
+| ArrayList          | Storing collections of objects                        |
+| Vector             | Skill-related data handling                           |
+| Stack              | Application status history                            |
+| HashMap            | Storing match-related information                     |
+| TreeSet            | Managing unique/normalized skills                     |
+| PriorityQueue      | Handling prioritized opportunities                    |
+| File I/O           | Saving and loading local data                         |
+| Multithreading     | Deadline reminder worker                              |
+| Synchronization    | Safe access to shared data                            |
+| Annotations        | Custom `@Feature` annotation                          |
+| Reflection         | Detecting annotated methods                           |
+| JDBC               | MySQL database operations                             |
+| JPA                | ORM-based database operations                         |
+
+---
+
+# 🔄 How the Project Works
+
+The overall flow is:
+
+```text
+Start
+  ↓
+Create Student Profile
+  ↓
+Enter Skills
+  ↓
+View Opportunities
+  ↓
+Compare Skills
+  ↓
+Calculate Match %
+  ↓
+Find Missing Skills
+  ↓
+Check Deadline & Stipend
+  ↓
+Calculate Priority
+  ↓
+Apply
+  ↓
+Track Application Status
+  ↓
+Check Reminders
+  ↓
+Exit
+```
+
+---
+
+# 🖥️ Command-Line Menu
+
+The project is intentionally command-line based because the submission is supposed to be executable through the terminal.
+
+The main menu looks like:
+
+```text
+1. View opportunities
+2. Get skill + deadline recommendations
+3. Add an opportunity
+4. Apply to an opportunity
+5. View applications
+6. Update application status
+7. Check deadline reminders
+8. Show technical features
+9. Delete an opportunity
+0. Exit
+```
+
+---
+
+# 📁 Project Structure
 
 ```text
 OPPORTUNA/
 │
-├── pom.xml
+├── .gitignore
 ├── README.md
 ├── PROJECT_REPORT.md
+├── pom.xml
 ├── schema.sql
-│
-├── data/
-│   └── generated when the application runs
 │
 └── src/
     └── main/
@@ -199,17 +303,278 @@ OPPORTUNA/
         │   └── com/
         │       └── opportuna/
         │           ├── annotation/
+        │           │   └── Feature.java
+        │           │
         │           ├── app/
+        │           │   └── Main.java
+        │           │
         │           ├── exception/
+        │           │   ├── DatabaseOperationException.java
+        │           │   └── InvalidInputException.java
+        │           │
         │           ├── model/
+        │           │   ├── Application.java
+        │           │   ├── ApplicationStatus.java
+        │           │   ├── Opportunity.java
+        │           │   └── StudentProfile.java
+        │           │
         │           ├── repository/
+        │           │   ├── ApplicationRepository.java
+        │           │   ├── OpportunityRepository.java
+        │           │
         │           │   ├── file/
         │           │   ├── jdbc/
         │           │   └── jpa/
+        │           │
         │           ├── service/
+        │           │   ├── MatchEngine.java
+        │           │   ├── OpportunityService.java
+        │           │   └── PriorityEngine.java
+        │           │
         │           ├── thread/
+        │           │   └── ReminderWorker.java
+        │           │
         │           └── util/
+        │               ├── ActivityLog.java
+        │               ├── FileStore.java
+        │               ├── InputValidator.java
+        │               └── ReflectionCatalog.java
         │
         └── resources/
             └── META-INF/
                 └── persistence.xml
+```
+
+---
+
+# 🛠️ Technologies Used
+
+* **Java**
+* **Maven**
+* **MySQL**
+* **JDBC**
+* **JPA / Hibernate**
+* **Java Collections**
+* **File Handling**
+* **Multithreading**
+
+---
+
+# ▶️ How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/saumyadixit3006/Opportuna.git
+```
+
+### 2. Open the project
+
+```bash
+cd Opportuna
+```
+
+### 3. Compile
+
+```bash
+mvn clean compile
+```
+
+### 4. Run
+
+```bash
+mvn exec:java
+```
+
+The application will start directly in the terminal.
+
+---
+
+# 🗄️ Database Setup
+
+The main application can work with local file storage.
+
+If you want to test the MySQL/JDBC part:
+
+1. Install MySQL.
+2. Create the required database.
+3. Run the commands present in `schema.sql`.
+4. Configure the database connection.
+5. Run the JDBC-related functionality.
+
+The JPA implementation can be tested separately as well.
+
+---
+
+# 📌 Example
+
+Suppose I enter:
+
+```text
+My Skills:
+Java
+Python
+SQL
+Git
+```
+
+An opportunity requires:
+
+```text
+Required Skills:
+Java
+SQL
+Git
+React
+```
+
+OPPORTUNA will show something similar to:
+
+```text
+Matched Skills:
+Java
+SQL
+Git
+
+Missing Skills:
+React
+
+Match Percentage:
+75%
+```
+
+The system can then use this along with the deadline and stipend to calculate the opportunity's priority.
+
+---
+
+# 🔍 What makes the project different from simple CRUD?
+
+The project is not only about adding, deleting, or updating records.
+
+There is some actual decision logic involved.
+
+For example:
+
+```text
+Student Skills
+      ↓
+Skill Comparison
+      ↓
+Match Percentage
+      ↓
+Missing Skills
+      ↓
+Deadline Analysis
+      ↓
+Stipend
+      ↓
+Priority Score
+```
+
+So the project uses the stored data to generate useful information for the student.
+
+---
+
+# ⚠️ Error Handling
+
+The project includes exception handling for situations such as:
+
+* Invalid input
+* Invalid opportunity details
+* Duplicate applications
+* Database errors
+* File-related errors
+
+Custom exceptions used include:
+
+```text
+InvalidInputException
+DatabaseOperationException
+```
+
+---
+
+# 🧵 Multithreading
+
+The deadline reminder feature uses Java's concurrency utilities.
+
+A separate worker is responsible for checking upcoming deadlines.
+
+This gave me a practical way to use multithreading instead of only demonstrating threads with a basic example.
+
+---
+
+# 🔎 Annotations & Reflection
+
+The project contains a custom annotation:
+
+```java
+@Feature
+```
+
+Reflection is then used to inspect classes and find methods containing this annotation.
+
+This demonstrates how Java can inspect program information at runtime.
+
+---
+
+# 🚧 Current Limitations
+
+The current version is mainly designed as a Java command-line project.
+
+Some things that are not implemented yet:
+
+* Online opportunity fetching
+* Login/authentication
+* Email notifications
+* Web interface
+* Mobile application
+* AI-based resume analysis
+* Automatic opportunity collection from websites
+
+These can be added in future versions.
+
+---
+
+# 🔮 Future Scope
+
+Some ideas I would like to add later are:
+
+* Resume-based skill extraction
+* Automatic opportunity collection
+* Email/deadline notifications
+* Better recommendation algorithms
+* Web dashboard
+* User login
+* Cloud database
+* Analytics for applications
+* AI-assisted opportunity matching
+
+---
+
+# 📚 What I Learned
+
+While making this project, I got practical experience with:
+
+* Designing classes and packages
+* Working with Java collections
+* Using interfaces and abstraction
+* Handling exceptions
+* Working with files
+* Using threads
+* Working with JDBC
+* Understanding JPA/Hibernate
+* Using annotations and reflection
+* Structuring a Maven project
+* Managing a project using Git and GitHub
+
+
+# 👩‍💻 Author
+
+**Saumya Dixit**
+
+B.Tech CSE (AIML)
+VIT Bhopal University
+
+GitHub:
+https://github.com/saumyadixit3006
