@@ -568,6 +568,20 @@ While making this project, I got practical experience with:
 * Structuring a Maven project
 * Managing a project using Git and GitHub
 
+  ## ▶️ How to Run
+
+### Requirements
+
+- Java 17 or higher
+- Apache Maven 3.8+
+- Git (if cloning from GitHub)
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/saumyadixit3006/Opportuna.git
+cd Opportuna
+
 
 # 👩‍💻 Author
 
